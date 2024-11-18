@@ -1,25 +1,23 @@
+
 import express from "express";
-import formidable from 'express-formidable';
-const router = express.Router()
+import formidable from "express-formidable";
+const router = express.Router();
 
-
-//contorllers
-import { 
-    addProduct, 
-    updateProductDetails, 
-    removeProduct, 
-    fetchProducts,
-    fetchProductById,
-    fetchAllProducts,
-    addProductReview,
-    fetchTopProducts,
-    fetchNewProducts,
-    filterProducts,
+// controllers
+import {
+  addProduct,
+  updateProductDetails,
+  removeProduct,
+  fetchProducts,
+  fetchProductById,
+  fetchAllProducts,
+  addProductReview,
+  fetchTopProducts,
+  fetchNewProducts,
+  filterProducts,
 } from "../controllers/productController.js";
 import { authenticate, authorizeAdmin } from "../middlewares/authMiddleware.js";
 import checkId from "../middlewares/checkId.js";
-
-
 
 router
   .route("/")

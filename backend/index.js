@@ -14,20 +14,27 @@ import categoryRoutes from "./routes/categoryRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import uploadRoutes from "./routes/uploadRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
+import multer from "multer";
 
 dotenv.config();
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 5000;
 
 connectDB();
 
 const app = express();
+//const cors = require('cors');
 
-app.use(cors()); // Add this line
+// app.use(cors({
+//   origin: 'http://localhost:5173' // Replace with your frontend URL
+// }));
+app.use(cors({
+  origin: 'http://localhost:5173',
+  // credentials: true,
+}));
+
 app.use(express.json());
-//app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-
 
 app.use("/api/users", userRoutes);
 app.use("/api/category", categoryRoutes);
@@ -35,13 +42,13 @@ app.use("/api/products", productRoutes);
 app.use("/api/upload", uploadRoutes);
 app.use("/api/orders", orderRoutes);
 
-app.use("/api/config/paypal", (req, res) => {
-    res.send({clientId: process.env.PAYPAL_CLIENT_ID})
-});
+// app.get("/api/config/paypal", (req, res) => {
+//   res.send({ clientId: process.env.PAYPAL_CLIENT_ID });
+// });
 
 const __dirname = path.resolve();
-app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
- 
+app.use("/uploads", express.static(path.join(__dirname + "/uploads")));
 
 app.listen(port, () => console.log(`Server running on port: ${port}`));
+
 

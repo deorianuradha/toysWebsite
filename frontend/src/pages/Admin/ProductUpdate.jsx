@@ -85,24 +85,17 @@ const AdminProductUpdate = () => {
       formData.append("quantity", quantity);
       formData.append("brand", brand);
       formData.append("countInStock", stock);
-
+  
       // Update product using the RTK Query mutation
-      const data = await updateProduct({ productId: params._id, formData });
-
-      if (data?.error) {
-        toast.error(data.error, {
-            position: "top-right",
-          autoClose: 2000,
-        });
-      } else {
-        toast.success(`Product successfully updated`, {
-            position: "top-right",
-          autoClose: 2000,
-        });
-        navigate("/admin/allproductslist");
-      }
+      const data = await updateProduct({ productId: params._id, formData }).unwrap();
+  
+      toast.success(`Product successfully updated`, {
+        position: "top-right",
+        autoClose: 2000,
+      });
+      navigate("/admin/allproductslist");
     } catch (err) {
-      console.log(err);
+      console.error(err);
       toast.error("Product update failed. Try again.", {
         position: "top-right",
         autoClose: 2000,
@@ -134,11 +127,11 @@ const AdminProductUpdate = () => {
 
   return (
     <>
-      <div className="container  xl:mx-[9rem] sm:mx-[0]">
+      <div className=" bg-[#dae4c5] xl:mx-[9rem] sm:mx-[0] mt-[6rem] p-[2rem]">
         <div className="flex flex-col md:flex-row">
           <AdminMenu />
           <div className="md:w-3/4 p-3">
-            <div className="h-12">Update / Delete Product</div>
+            <div className="h-12 text-xl">Update / Delete Product</div>
 
             {image && (
               <div className="text-center">

@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import {
   useCreateCategoryMutation,
@@ -10,7 +11,6 @@ import { toast } from "react-toastify";
 import CategoryForm from "../../components/CategoryForm";
 import Modal from "../../components/Modal";
 import AdminMenu from "./AdminMenu";
-
 
 const CategoryList = () => {
   const { data: categories } = useFetchCategoriesQuery();
@@ -87,15 +87,15 @@ const CategoryList = () => {
       }
     } catch (error) {
       console.error(error);
-      toast.error("Category delection failed. Tray again.");
+      toast.error("Category deletion failed. Tray again.");
     }
   };
 
   return (
-    <div className="ml-[10rem] flex flex-col md:flex-row">
+    <div className="ml-[10rem] flex flex-col md:flex-row  ">
       <AdminMenu />
-      <div className="md:w-3/4 p-3">
-        <div className="h-12">Manage Categories</div>
+      <div className="md:w-3/4 p-[6rem] mt-[2rem] bg-[#dae4c5]">
+        <div className="h-12 text-xl">Manage Categories</div>
         <CategoryForm
           value={name}
           setValue={setName}
@@ -108,7 +108,7 @@ const CategoryList = () => {
           {categories?.map((category) => (
             <div key={category._id}>
               <button
-                className="bg-white border border-pink-500 text-pink-500 py-2 px-4 rounded-lg m-3 hover:bg-pink-500 hover:text-white focus:outline-none foucs:ring-2 focus:ring-pink-500 focus:ring-opacity-50"
+                className="bg-gray border border-pink-500 text-pink-500 py-2 px-4 rounded-lg m-3 hover:bg-pink-500 hover:text-white focus:outline-none foucs:ring-2 focus:ring-pink-500 focus:ring-opacity-50"
                 onClick={() => {
                   {
                     setModalVisible(true);

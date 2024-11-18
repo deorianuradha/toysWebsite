@@ -23,7 +23,7 @@ const initialState = localStorage.getItem("cart")
             return updateCart(state, item)
         },
 
-        removeFormCart: (state, action) => {
+        removeFromCart: (state, action) => {
             state.cartItems = state.cartItems.filter((x) => x._id !== action.payload)
             return updateCart(state);
         },

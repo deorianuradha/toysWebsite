@@ -5,12 +5,7 @@ import { useRegisterMutation } from "../../redux/api/usersApiSlice";
 import Loader from "../../components/Loader.jsx";
 import { toast } from "react-toastify";
 import { setCredientials } from "../../redux/features/auth/authSlice.js";
-
-
-
-
-
-
+import AllSecurityTopics from "../Security.jsx";
 
 
 const Register = () => {
@@ -55,15 +50,15 @@ const Register = () => {
   };
 
     return (
-        <section className="pl-[10rem] flex flex-wrap">
-            <div className="mr-[4rem] mt-[5rem]">
+        <section className="container ml-[20rem] p-3 flex flex-wrap bg-[#fafaf9] shadow-lg">
+            <div className="mr-[4rem] mt-[2rem] ml-[20rem]">
                 <h1 className="text-2xl font-semibold mb-4">Register</h1>
 
                 <form onSubmit={submitHandler} className="container w-[40rem]">
                     <div className="my-[2rem]">
                         <label
                         htmlFor="name"
-                        className="block text-sm font-medium text-white"
+                        className="block text-sm font-semibold text-black"
                         >
                         Name
                         </label>
@@ -80,7 +75,7 @@ const Register = () => {
                     <div className="my-[2rem]">
                         <label
                         htmlFor="email"
-                        className="block text-sm font-medium text-white"
+                        className="block text-sm font-semibold text-black"
                         >
                         Email Address
                         </label>
@@ -97,7 +92,7 @@ const Register = () => {
                     <div className="my-[2rem]">
                         <label
                         htmlFor="password"
-                        className="block text-sm font-medium text-white"
+                        className="block text-sm font-semibold text-black"
                         >
                         Password
                         </label>
@@ -114,7 +109,7 @@ const Register = () => {
                     <div className="my-[2rem]">
                         <label
                         htmlFor="confirmPassword"
-                        className="block text-sm font-medium text-white"
+                        className="block text-sm font-semibold text-black"
                         >
                         Confirm Password
                         </label>
@@ -131,7 +126,7 @@ const Register = () => {
                     <button
                         disabled={isLoading}
                         type="submit"
-                        className="bg-pink-500 text-white px-4 py-2 rounded cursor-pointer my-[1rem]"
+                        className="bg-pink-500 text-black px-4 py-2 rounded cursor-pointer my-[1rem]"
                     >
                         {isLoading ? "Registering..." : "Register"}
                     </button>
@@ -147,6 +142,14 @@ const Register = () => {
                         >
                         Login
                         </Link>
+                    </p>
+                    <p>
+                      Data Privacy Policy?{" "}
+                      <Link to={redirect ? `/Security?redirect=${redirect}` : "/Security"}
+                        className="text-pink-500 hover:underline"
+                        >
+                        Security
+                      </Link>
                     </p>
                 </div>
             </div>

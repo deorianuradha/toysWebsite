@@ -43,9 +43,10 @@ const Login = () => {
 
         return(
             <div>
-            <section className="pl-[10rem] flex flex-wrap">
-                <div className="mr-[4rem] mt-[5rem]">
-                    <h1 className="text-2xl font-semibold mb-4">Sign In</h1>
+            <section className="container ml-[20rem] flex flex-wrap bg-[#fafaf9] shadow-lg mb-[0rem] p-3"
+            style={{ fontFamily: '"Nerko One",' }}>
+                <div className="mr-[4rem]  ml-[20rem]">
+                    <h1 className="text-2xl mt-[3rem] font-semibold mb-4">Sign In</h1>
                     <form onSubmit={submitHandler} className="container w-[40rem]">
                         <div className="my-[2rem]">
                             <label htmlFor="email"
@@ -78,7 +79,7 @@ const Login = () => {
                         </button>
                         {isloading && <Loader />}
                     </form>
-                    <div className="mt-4">
+                    <div className="mt-4 mb-[4rem]">
                         <p className="text-black">
                         New Customer?{" "}
                         <Link

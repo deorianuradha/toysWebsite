@@ -17,9 +17,11 @@ const AllProducts = () => {
 
   return (
     <>
-      <div className="container mx-[9rem]">
-        <div className="flex flex-col  md:flex-row">
-          <div className="p-3">
+      <div className=" mx-[5rem] bg-[#dae4c5] mt-[6rem] ">
+      <AdminMenu />
+        <div className="flex flex-col "> 
+        {/* md:flex-row */}
+          <div className="p-[5rem] ">
             <div className="ml-[2rem] text-xl font-bold h-12">
               All Products ({products.length})
             </div>
@@ -42,12 +44,12 @@ const AllProducts = () => {
                           {product?.name}
                         </h5>
 
-                        <p className="text-gray-400 text-xs">
+                        <p className="text-black-400 text-xs">
                           {moment(product.createdAt).format("MMMM Do YYYY")}
                         </p>
                       </div>
 
-                      <p className="text-gray-400 xl:w-[30rem] lg:w-[30rem] md:w-[20rem] sm:w-[10rem] text-sm mb-4">
+                      <p className="text-black-400 xl:w-[30rem] lg:w-[30rem] md:w-[20rem] sm:w-[10rem] text-sm mb-4">
                         {product?.description?.substring(0, 160)}...
                       </p>
 
@@ -73,7 +75,7 @@ const AllProducts = () => {
                             />
                           </svg>
                         </Link>
-                        <p>$ {product?.price}</p>
+                        <p>₹ {product?.price}</p>
                       </div>
                     </div>
                   </div>
@@ -81,9 +83,9 @@ const AllProducts = () => {
               ))}
             </div>
           </div>
-          <div className="md:w-1/4 p-3 mt-2">
+          {/* <div className="md:w-1/4 p-3 mt-2">
             <AdminMenu />
-          </div>
+          </div> */}
         </div>
       </div>
     </>

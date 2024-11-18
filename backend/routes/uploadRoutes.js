@@ -47,6 +47,24 @@ router.post("/", (req, res) => {
   });
 });
 
+// const uploadMultipleImages = upload.array("image"); // Change to handle multiple images
+
+// router.post("/", (req, res) => {
+//   uploadMultipleImages(req, res, (err) => {
+//     if (err) {
+//       res.status(400).send({ message: err.message });
+//     } else if (req.files.length > 0) { // Check for multiple files
+//       const imagePaths = req.files.map(file => `/${file.path}`);
+//       res.status(200).send({
+//         message: "Images uploaded successfully",
+//         images: imagePaths,
+//       });
+//     } else {
+//       res.status(400).send({ message: "No image files provided" });
+//     }
+//   });
+// });
+
 
 
 

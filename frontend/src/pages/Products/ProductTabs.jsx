@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Ratings from "./Ratings";
-import { useGetTopProductsQuery } from "../../redux/api/productApiSlice";
-import SmallProduct from "./SmallProduct";
+// import { useGetTopProductsQuery } from "../../redux/api/productApiSlice";
+// import SmallProduct from "./SmallProduct";
 import Loader from "../../components/Loader";
+import { useTranslation } from "react-i18next";
 
 
 const ProductTabs = ({
+  
     loadingProductReview,
     userInfo,
     submitHandler,
@@ -16,20 +18,21 @@ const ProductTabs = ({
     setComment,
     product,
   }) => {
-    const { data, isLoading } = useGetTopProductsQuery();
+    // const { data, isLoading } = useGetTopProductsQuery();
   
     const [activeTab, setActiveTab] = useState(1);
+    const {t} = useTranslation();
   
-    if (isLoading) {
-      return <Loader />;
-    }
+    // if (isLoading) {
+    //   return <Loader />;
+    // }
   
     const handleTabClick = (tabNumber) => {
       setActiveTab(tabNumber);
     };
   
     return (
-      <div className="flex flex-col md:flex-row bg-gray-200">
+      <div className="flex flex-col md:flex-row bg-[#fafaf9]">
         <section className="mr-[5rem]">
           <div
             className={`flex-1 p-4 cursor-pointer text-lg ${
@@ -37,7 +40,7 @@ const ProductTabs = ({
             }`}
             onClick={() => handleTabClick(1)}
           >
-            Write Your Review
+            {t("Write Your Review")}
           </div>
           <div
             className={`flex-1 p-4 cursor-pointer text-lg bg-gray-200 ${
@@ -45,16 +48,16 @@ const ProductTabs = ({
             }`}
             onClick={() => handleTabClick(2)}
           >
-            All Reviews
+            {t("All Reviews")}
           </div>
-          <div
+          {/* <div
             className={`flex-1 p-4 cursor-pointer text-lg ${
               activeTab === 3 ? "font-bold" : ""
             }`}
             onClick={() => handleTabClick(3)}
           >
             Related Products
-          </div>
+          </div> */}
         </section>
   
         {/* Second Part */}
@@ -65,7 +68,7 @@ const ProductTabs = ({
                 <form onSubmit={submitHandler}>
                   <div className="my-2">
                     <label htmlFor="rating" className="block text-xl mb-2">
-                      Rating
+                      {t("Rating")}
                     </label>
   
                     <select
@@ -75,18 +78,18 @@ const ProductTabs = ({
                       onChange={(e) => setRating(e.target.value)}
                       className="p-2 border rounded-lg xl:w-[40rem] text-black"
                     >
-                      <option value="">Select</option>
-                      <option value="1">Inferior</option>
-                      <option value="2">Decent</option>
-                      <option value="3">Great</option>
-                      <option value="4">Excellent</option>
-                      <option value="5">Exceptional</option>
+                      <option value="">{t("Select")}</option>
+                      <option value="1">{t("Inferior")}</option>
+                      <option value="2">{t("Decent")}</option>
+                      <option value="3">{t("Great")}</option>
+                      <option value="4">{t("Excellent")}</option>
+                      <option value="5">{t("Exceptional")}</option>
                     </select>
                   </div>
   
                   <div className="my-2">
                     <label htmlFor="comment" className="block text-xl mb-2">
-                      Comment
+                      {t("Comment")}
                     </label>
   
                     <textarea
@@ -103,12 +106,12 @@ const ProductTabs = ({
                     disabled={loadingProductReview}
                     className="bg-pink-600 text-white py-2 px-4 rounded-lg"
                   >
-                    Submit
+                    {t("Submit")}
                   </button>
                 </form>
               ) : (
                 <p>
-                  Please <Link to="/login">sign in</Link> to write a review
+                  {t("Please")} <Link to="/login">{t("sign in")}</Link>{t(" to write a review")}
                 </p>
               )}
             </div>
@@ -118,7 +121,7 @@ const ProductTabs = ({
         <section className="bg-gray-200">
           {activeTab === 2 && (
             <>
-              <div>{product.reviews.length === 0 && <p>No Reviews</p>}</div>
+              <div>{product.reviews.length === 0 && <p>{t("No Reviews")}</p>}</div>
   
               <div>
                 {product.reviews.map((review) => (
@@ -127,7 +130,7 @@ const ProductTabs = ({
                     className="bg-[#1A1A1A] p-4 rounded-lg xl:ml-[2rem] sm:ml-[0rem] xl:w-[50rem] sm:w-[24rem] mb-5"
                   >
                     <div className="flex justify-between">
-                      <strong className="text-[#B0B0B0]">{review.name}</strong>
+                      <strong className="text-[#B0B0B0]">{t("review.name")}</strong>
                       <p className="text-[#B0B0B0]">
                         {review.createdAt.substring(0, 10)}
                       </p>
@@ -142,7 +145,7 @@ const ProductTabs = ({
           )}
         </section>
   
-        <section className="bg-gray-200">
+        {/* <section className="bg-gray-200">
           {activeTab === 3 && (
             <section className="ml-[4rem] flex flex-wrap">
               {!data ? (
@@ -156,7 +159,7 @@ const ProductTabs = ({
               )}
             </section>
           )}
-        </section>
+        </section> */}
       </div>
     );
   };
